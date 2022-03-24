@@ -1,4 +1,4 @@
-var fs = require('fs'),
+/* var fs = require('fs'),
     request = require('request');
 
 var download = function(uri, filename, callback){
@@ -12,4 +12,4 @@ var download = function(uri, filename, callback){
 
 module.exports = {
     download
-};
+}; */

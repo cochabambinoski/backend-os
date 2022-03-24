@@ -12,21 +12,17 @@ const getPokemon = async (pokemonName) => {
     return data
 }
 
-router.get(`/api/pokemon/:pokemon&:itype`,(req,res) => {
-    if(req.params.itype==="front_default" || req.params.itype==="front_shiny"){
-        const s = getPokemon(req.params.pokemon);
-        download(s.sprites.front_default,req.params.pokemon + "_"+req.params.itype,function(){
-            console.log("image saved")
-        });
-        res.json(s);
+router.get(`/api/pokemon/`, async (req,res) => {
+   if(req.query.sprites.front_default || req.params.sprites.front_shiny){
+        const s = await getPokemon(req.query.name);
+        res.json(s.sprites.front_default);
 
-    } else {
-        res.send("Incorrect type");
-    }
-
+   } else {
+       res.send("Incorrect type");
+   }   
 });
 
-router.post(`/api/post/:pokemon&:itype`,(req,res)=>{
+/* router.post(`/api/post/:pokemon&:itype`,(req,res)=>{
     if (fs.existsSync('./assets/{pokemon}_{itype}')) {
         res.send('Pokemon already registered')
     } else {
@@ -35,6 +31,6 @@ router.post(`/api/post/:pokemon&:itype`,(req,res)=>{
             console.log("pokemon saved")
         });
     }
-})
+}) */
 
 module.exports = router;
