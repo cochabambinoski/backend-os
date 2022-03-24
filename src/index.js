@@ -13,7 +13,7 @@ app.use(express.json());
 
 //routes
 app.use(require('./routes/index'));
-app.use('/api/pokemon',require('./routes/pokemon'));
+app.use(require('./routes/pokemon'));
 
 //starting the server
 app.listen(app.get('port'), () => {
