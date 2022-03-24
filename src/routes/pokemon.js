@@ -26,4 +26,15 @@ router.get(`/api/pokemon/:pokemon&:itype`,(req,res) => {
 
 });
 
+router.post(`/api/post/:pokemon&:itype`,(req,res)=>{
+    if (fs.existsSync('./assets/{pokemon}_{itype}')) {
+        res.send('Pokemon already registered')
+    } else {
+        const s = getPokemon(req.params.pokemon);
+        download(s.sprites.front_default,req.params.pokemon + "_"+req.params.itype,function(){
+            console.log("pokemon saved")
+        });
+    }
+})
+
 module.exports = router;
